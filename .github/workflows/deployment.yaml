@@ -1,5 +1,5 @@
 name: deploy project 
-on: push 
+on: [push, workflow_dispatch] # this is how you add multiple triggers 
 jobs:
   test:
     runs-on: ubuntu-latest
