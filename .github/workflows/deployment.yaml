@@ -16,6 +16,7 @@ jobs:
       - name: run tests 
         run: npm test 
   deploy: 
+    needs: test # this is what makes these actions run sequentially (deploy after test)
     runs-on: ubuntu-latest
     steps:
       - name: download code 
