@@ -1,0 +1,33 @@
+name: deploy project 
+on: push 
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download code 
+        uses: actions/checkout@v3 # using a predefined action here 
+        # with: keyword used for configurations for the uses keyword 
+      - name: install nodejs
+        uses: actions/setup-node@v3 # you dont have to do this step as the runner already has node installed
+        with:
+          node-version: 18
+      - name: install dependencies 
+        run: npm ci 
+      - name: run tests 
+        run: npm test 
+  deploy: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: download code 
+        uses: actions/checkout@v3 
+      - name: install nodejs
+        uses: actions/setup-node@v3 
+        with:
+          node-version: 18
+      - name: install dependencies 
+        run: npm ci 
+      - name: build project 
+        run: npm run build 
+      - name: deploy
+        run: echo "deploying..."
+        
